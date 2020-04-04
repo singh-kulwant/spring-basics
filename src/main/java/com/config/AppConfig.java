@@ -12,36 +12,33 @@ import org.springframework.context.annotation.*;
 
 @Configuration
 @Import(DataConfig.class)
-@PropertySource("classpath:/application.yml")
+@PropertySource("classpath:/application-${spring.profiles.active}.yml")
 public class AppConfig {
 
     @Value("${application.name}")
     private String applicationName;
 
+    @Value("${profile}")
+    private String active;
+
+    @Value("#{new Boolean(environment['spring.profiles.active']=='dev')}")
+    private boolean isDev;
+
     public class Worker {
-        private String active;
         private String text;
 
-        Worker(String active, String text) {
-            this.active = active;
+        Worker(String text) {
             this.text = text;
         }
 
         public void execute() {
-            System.out.println("Welcome to " + active + "-" + text);
+            System.out.println("Welcome to " + active + "-" + text+" isDev: "+isDev);
         }
     }
 
     @Bean
-    @Profile("dev")
-    public Worker workerForDev() {
-        return new Worker("dev", applicationName);
-    }
-
-    @Bean
-    @Profile("prod")
-    public Worker workerForProd() {
-        return new Worker("prod", applicationName);
+    public Worker worker() {
+        return new Worker(applicationName);
     }
 
     @Bean
