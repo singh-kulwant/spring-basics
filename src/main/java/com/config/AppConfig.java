@@ -9,8 +9,10 @@ import com.service.impl.InventoryServiceImpl;
 import com.service.impl.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @Configuration
+@Import(DataConfig.class)
 public class AppConfig {
 
     @Bean
@@ -21,21 +23,6 @@ public class AppConfig {
     @Bean
     public InventoryService inventoryService(InventoryItemRepository inventoryItemRepository) {
         return new InventoryServiceImpl(inventoryItemRepository);
-    }
-
-    @Bean
-    public InventoryItemRepository inventoryItemRepository() {
-        return new InventoryItemRepository();
-    }
-
-    @Bean
-    public CustomerRepository customerRepository() {
-        return new CustomerRepository();
-    }
-
-    @Bean
-    public SalesOrderRepository salesOrderRepository() {
-        return new SalesOrderRepository();
     }
 }
 
