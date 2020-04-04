@@ -1,6 +1,12 @@
+# Intellij file
 .idea
+
+# Mac file
 .DS_Store
+
+# Target directory
 target
+
 # Compiled class file
 *.class
 
