@@ -8,10 +8,7 @@ import com.service.InventoryService;
 import com.service.impl.InventoryServiceImpl;
 import com.service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 
 @Configuration
 @Import(DataConfig.class)
@@ -22,20 +19,29 @@ public class AppConfig {
     private String applicationName;
 
     public class Worker {
+        private String active;
         private String text;
 
-        Worker(String text) {
+        Worker(String active, String text) {
+            this.active = active;
             this.text = text;
         }
 
         public void execute() {
-            System.out.println("Welcome to " + text);
+            System.out.println("Welcome to " + active + "-" + text);
         }
     }
 
     @Bean
-    public Worker worker() {
-        return new Worker(applicationName);
+    @Profile("dev")
+    public Worker workerForDev() {
+        return new Worker("dev", applicationName);
+    }
+
+    @Bean
+    @Profile("prod")
+    public Worker workerForProd() {
+        return new Worker("prod", applicationName);
     }
 
     @Bean
