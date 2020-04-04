@@ -15,5 +15,7 @@ public class App {
 
         AppConfig.Worker worker = context.getBean(AppConfig.Worker.class);
         worker.execute();
+        AppConfig.Worker worker1 = context.getBean(AppConfig.Worker.class);
+        worker1.execute();
     }
 }

@@ -29,6 +29,7 @@ public class AppConfig {
 
         Worker(String text) {
             this.text = text;
+            System.out.println("New Worked hired!");
         }
 
         public void execute() {
@@ -37,6 +38,7 @@ public class AppConfig {
     }
 
     @Bean
+    @Scope("prototype")
     public Worker worker() {
         return new Worker(applicationName);
     }
