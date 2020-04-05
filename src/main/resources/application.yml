@@ -1,2 +1,8 @@
 application.name: garage
 profile: local
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+logging:
+  level.root: info
