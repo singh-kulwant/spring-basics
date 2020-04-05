@@ -9,10 +9,12 @@ import com.service.impl.InventoryServiceImpl;
 import com.service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.stereotype.Component;
 
 @Configuration
 @Import(DataConfig.class)
 @PropertySource("classpath:/application-${spring.profiles.active}.yml")
+@ComponentScan(basePackages = {"com"})
 public class AppConfig {
 
     @Value("${application.name}")
@@ -33,24 +35,13 @@ public class AppConfig {
         }
 
         public void execute() {
-            System.out.println("Welcome to " + active + "-" + text+" isDev: "+isDev);
+            System.out.println("Welcome to " + active + "-" + text + " isDev: " + isDev);
         }
     }
 
     @Bean
-    @Scope("prototype")
     public Worker worker() {
         return new Worker(applicationName);
-    }
-
-    @Bean
-    public OrderServiceImpl orderService(InventoryService inventoryService, CustomerRepository customerRepository, SalesOrderRepository salesOrderRepository) {
-        return new OrderServiceImpl(inventoryService, customerRepository, salesOrderRepository);
-    }
-
-    @Bean
-    public InventoryService inventoryService(InventoryItemRepository inventoryItemRepository) {
-        return new InventoryServiceImpl(inventoryItemRepository);
     }
 }
 

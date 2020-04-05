@@ -1,7 +1,7 @@
 package com.service;
 
-import com.domain.Customer;
-import com.domain.Order;
+import com.model.Customer;
+import com.model.Order;
 
 import java.util.Map;
 

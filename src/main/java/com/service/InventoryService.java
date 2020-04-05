@@ -1,8 +1,7 @@
 package com.service;
 
-import com.domain.Product;
+import com.model.Product;
 
-import java.util.List;
 import java.util.Map;
 
 public interface InventoryService {

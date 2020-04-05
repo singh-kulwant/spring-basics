@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         OrderService orderService = context.getBean(OrderService.class);
-        System.out.println(orderService == null ? "NULL" : "OK");
+        System.out.println("Order Service: "+orderService == null ? "NULL" : "OK");
 
         AppConfig.Worker worker = context.getBean(AppConfig.Worker.class);
         worker.execute();

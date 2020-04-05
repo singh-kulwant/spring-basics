@@ -1,4 +1,4 @@
-package com.domain;
+package com.model;
 
 public class Customer {
     private String customerId;

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DataConfig {
 
-    @Bean
+/*    @Bean
     public InventoryItemRepository inventoryItemRepository() {
         return new InventoryItemRepository();
     }
@@ -22,5 +22,5 @@ public class DataConfig {
     @Bean
     public SalesOrderRepository salesOrderRepository() {
         return new SalesOrderRepository();
-    }
+    }*/
 }
